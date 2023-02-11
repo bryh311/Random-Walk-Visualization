@@ -28,6 +28,7 @@ function init() {
         event.preventDefault();
         const text = document.getElementById("frameRateText").value;
         setFramerate(text);
+        frameNum = 0;
     })
 }
 
@@ -72,13 +73,13 @@ function draw() {
         ctx.fillRect(0,0,width,height)
         ctx.strokeStyle = "coral"
         ctx.beginPath()
-        for (let i = 0; i < width; i += (width / ALIGNMENT)) {
+        for (let i = 0; i < width; i += ALIGNMENT) {
             ctx.moveTo(i, 0);
             ctx.lineTo(i, height);
             ctx.stroke();    
         }
 
-        for (let i = 0; i < height; i += (height / ALIGNMENT)) {
+        for (let i = 0; i < height; i += ALIGNMENT) {
             ctx.moveTo(0,i);
             ctx.lineTo(width, i);
             ctx.stroke();
@@ -95,7 +96,7 @@ function animate() {
     let centerY = Math.floor(height / 2);
     if (canvas.getContext) {
         const ctx = canvas.getContext("2d");
-        ctx.lineWidth = 5;
+        ctx.lineWidth = ALIGNMENT / 4;
         if (frameNum % Math.floor(60 / frameRate) == 0) {
             for (let walk of walkers) {
                 walk.iterate();
