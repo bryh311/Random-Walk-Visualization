@@ -66,23 +66,24 @@ function draw() {
     const height = canvas.height;
     if (canvas.getContext) {
         const ctx = canvas.getContext("2d")
-
-        // draw grid
         ctx.lineWidth = 1;
-        ctx.fillStyle = "gainsboro"
-        ctx.fillRect(0,0,width,height)
-        ctx.strokeStyle = "coral"
-        ctx.beginPath()
-        for (let i = 0; i < width; i += ALIGNMENT) {
-            ctx.moveTo(i, 0);
-            ctx.lineTo(i, height);
-            ctx.stroke();    
-        }
+        ctx.fillStyle = "gainsboro";
+        ctx.fillRect(0,0,width,height);
+        if (ALIGNMENT >= 2) {
+            // draw grid
+            ctx.strokeStyle = "coral"
+            ctx.beginPath()
+            for (let i = 0; i < width; i += ALIGNMENT) {
+                ctx.moveTo(i, 0);
+                ctx.lineTo(i, height);
+                ctx.stroke();    
+            }
 
-        for (let i = 0; i < height; i += ALIGNMENT) {
-            ctx.moveTo(0,i);
-            ctx.lineTo(width, i);
-            ctx.stroke();
+            for (let i = 0; i < height; i += ALIGNMENT) {
+                ctx.moveTo(0,i);
+                ctx.lineTo(width, i);
+                ctx.stroke();
+            }
         }
     
     }
