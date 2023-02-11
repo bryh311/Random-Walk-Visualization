@@ -1,6 +1,6 @@
 import { Walker } from "./walker.js";
 
-const ALIGNMENT = 20;
+let ALIGNMENT = 20;
 let frameNum = 0;
 let numWalks = 0;
 let frameRate = 60;
@@ -30,6 +30,23 @@ function init() {
         setFramerate(text);
         frameNum = 0;
     })
+
+    const captureButton = document.getElementById("capture");
+    captureButton.addEventListener("click", function (event) {
+        const img = document.getElementById("captureImage");
+        const canvas = document.getElementById("canvas");
+        img.src = canvas.toDataURL('img/png');
+    })
+
+    const gridSizeForm = document.getElementById("gridSizeForm");
+    gridSizeForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        const text = document.getElementById("gridSizeText").value;
+        setWalks("0");
+        frameNum = 0;
+        setAlignment(text)
+        draw();
+    })
 }
 
 
@@ -54,9 +71,17 @@ function setWalks(text) {
 
 function setFramerate(text) {
     frameRate = parseInt(text);
-    if (frameRate === NAN || frameRate <= 0) {
+    if (frameRate === NaN || frameRate <= 0) {
         alert("ILLEGAL FRAME RATE");
         frameRate = 60;
+    }
+}
+
+function setAlignment(text) {
+    ALIGNMENT = parseInt(text);
+    if (ALIGNMENT === NaN || ALIGNMENT <= 0) {
+        alert("ILLEGAL GRID SIZE");
+        ALIGNMENT = 20;
     }
 }
 
