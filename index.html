@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Random Walk Visualization</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="visualization.js" type="module" type="application"></script>
+    </head>
+    <body onload="init();">
+        <div class="container">
+            <h1>Random Walk Visualization</h1>
+            <form name="walkCountForm" id="walkCountForm" action="">
+                <label>Walks:</label>
+                <input type="text" name="walkCount" id="walkCountText" value="">
+                <input type="submit" name="button" value="Click" id="walkCountButton">
+            </form>
+            <form name="frameRateForm" id="frameRateForm" action="">
+                <label>Framerate:</label>
+                <input type="text" name="frameRateText" id="frameRateText" value="">
+                <input type="submit" name="button" value="Click" id="frameRateButton">
+            </form> 
+            <p id="framecounter">Frame Number: </p> <br>
+            <canvas id="canvas" width="400" height="400"></canvas><br>
+            <button type="submit" name="toggle" id="toggle">Toggle</button>
+        </div>
+        
+    </body>
+</html>
